@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
+
+  loader:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_HOST=mongo
